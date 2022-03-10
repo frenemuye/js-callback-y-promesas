@@ -6,22 +6,26 @@
 </head>
 
 <body>
-
+	<div id="prueba"></div>
+</body>
 	<script type="text/javascript">
 		//en este ejercicio emulamos la respuesta de un servidor pasado 5 seg con un callback
 		function servidor() {
-			setTimeout(function () {
-				console.log("el servidor ha generado una respuesta...");
+			setTimeout(function () 
+			{
+				//simula una respuesta del servidor pasado dos segundos
+				//console.log("el servidor ha generado una respuesta...");
+				document.getElementById('prueba').innerHTML = "el servidor ha generado una respuesta...";                     
 			}, 2000)
 		}
 
 		function fn_callback(parametro) {
-			console.log("Espere por favor ...");
+			//console.log("Espere por favor ...");
+			document.getElementById('prueba').innerHTML = "Espere por favor...";                     
 			parametro();
 		}
 
 		fn_callback(servidor);
 	</script>
-</body>
 
 </html>

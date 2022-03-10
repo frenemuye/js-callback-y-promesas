@@ -9,12 +9,12 @@
 </head>
 
 <body>
-<div id="mensaje">
+<div id="prueba"></div>
 
-</div>
+<div id="mensaje"></div>
 </body>
 <script>
-
+//crear objeto de productos
     let productos = [
         {
             referencia: "ref1",
@@ -76,59 +76,58 @@
             precio_unitario: "200000",
             existencia: "10",
         },
-    ];   
-//generación de la promesa asincronica para buscar en el arreglo un objetos.
+    ];
+
+    //generación de la promesa asincronica para buscar en el arreglo un objetos.
     function promesa(ref_prod) {
-        return new Promise((si_esta, no_esta) => 
-        {
-            
-            let sw=0;
-            result = prompt("Digita la referencia que buscas", "");
-            for (registro of productos) 
-            {
-                if (result == registro.referencia) 
-                {
-                    si_esta(registro);                               
-                    sw=1;
+        return new Promise((si_cumple, no_cumple) => {
+            var sw = 0;
+            let result = prompt("Digita la referencia que buscas", "");
+            for (registro of productos) {
+                if (result == registro.referencia) {
+                    si_cumple(registro);
+                    sw = 1;//lo encontro
                     break;
-                }                
+                }
             }
-            if (sw==0) 
-            {
-                no_esta("Producto no encontrado");
+            if (sw == 0) {
+                no_cumple("Producto no encontrado");
             }
-                
         })
     }
+
+    //respuesta de la promesa asincronica para buscar en el arreglo un objetos.
+
     promesa(productos)
-        .then((datos_objeto) => 
-        {
-            console.log(productos)
-            
+        .then((datos_objeto) => {
+            //console.log(productos)
+            //document.getElementById('prueba').innerHTML = productos;            
+
             let mi_html = `
-                    <table border="1">
-                        <tr>
-                            <th>referencia </th>
-                            <th>descripcion </th>
-                            <th>precio_unitario </th>
-                            <th>existencia </th>
-                        </tr>    
-                        <tr>
-                            <td>${productos[0].referencia} </td>
-                            <td>${productos[0].descripcion} </td>
-                            <td>${productos[0].precio_unitario} </td>
-                            <td>${productos[0].existencia} </td>
-                        </tr>				
-                    </table>
-                    `
-                    console.log(mi_html)
-                document.getElementById('mensaje').innerHTML = mi_html;                     
-                       
+        <table border="1">
+            <tr>
+                <th>referencia </th>
+                <th>descripcion </th>
+                <th>precio_unitario </th>
+                <th>existencia </th>
+            </tr>    
+            <tr>
+                <td>${productos[0].referencia} </td>
+                <td>${productos[0].descripcion} </td>
+                <td>${productos[0].precio_unitario} </td>
+                <td>${productos[0].existencia} </td>
+            </tr>				
+        </table>
+        `
+            //console.log(mi_html)
+            document.getElementById('mensaje').innerHTML = mi_html;
+
         })
-        .catch((error) => 
-        {
-            document.getElementById('mensaje').innerHTML = error;        
-        }) 
+        .catch((error) => {
+            document.getElementById('mensaje').innerHTML = error;
+        })
+            
+                            
 </script>
 
 </html>
