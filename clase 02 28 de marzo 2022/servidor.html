@@ -1,26 +1,27 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title></title>
 </head>
+
 <body>
 
-<script type="text/javascript">
-//en este ejercicio emulamos la respuesta de un servidor pasado 5 seg con un callback
-	function servidor() 
-	{
-		setTimeout(function()
-		{
-			console.log("el servidor ha generado una respuesta...");
-		},5000)
-	}
+	<script type="text/javascript">
+		//en este ejercicio emulamos la respuesta de un servidor pasado 5 seg con un callback
+		function servidor() {
+			setTimeout(function () {
+				console.log("el servidor ha generado una respuesta...");
+			}, 2000)
+		}
 
-	function fncb(fnc) {
-		fnc()
-		console.log("Espere por favor ...");
-	}
-   
-    fncb(servidor);
-</script>
+		function fn_callback(parametro) {
+			console.log("Espere por favor ...");
+			parametro();
+		}
+
+		fn_callback(servidor);
+	</script>
 </body>
+
 </html>
