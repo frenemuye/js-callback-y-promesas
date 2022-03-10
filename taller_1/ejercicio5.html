@@ -79,58 +79,64 @@
     ];
 
     //en este ejercicio emulamos la respuesta de un servidor pasado 5 seg con un callback
-    function servidor() 
-    {
-        setTimeout(function () {
-            //simula una respuesta del servidor pasado dos segundos
-            //console.log("el servidor ha generado una respuesta...");
-            document.getElementById('prueba').innerHTML = "el servidor ha generado una respuesta...";
-        }, 3000)
-    }
+        function servidor() {
+            setTimeout(function () {
+                //simula una respuesta del servidor pasado dos segundos
+                //console.log("el servidor ha generado una respuesta...");
+                document.getElementById('prueba').innerHTML = "el servidor ha generado una respuesta...";
+            }, 3000)
+        }
 
-    function fn_callback(parametro) 
-    {
-            //console.log("Espere por favor ...");
-            document.getElementById('prueba').innerHTML = "Espere por favor...";
-            parametro();
-    }
-    
-    var result = prompt("Digita la referencia que buscas", "");
+        function fn_callback(parametro) {
+                //console.log("Espere por favor ...");
+                document.getElementById('prueba').innerHTML = "Espere por favor...";
+                parametro();
+            }
+                    var result = prompt("Digita la referencia que buscas", "");
 
-    fn_callback(servidor);    
+        fn_callback(servidor);    
 
     //generación de la promesa asincronica para buscar en el arreglo un objetos.
-    function buscar() 
-    {
+    function promesa(ref_prod) {
+        return new Promise((si_cumple, no_cumple) => {
             var sw = 0;
-            for (registro of productos) 
-            {
-                if (result == registro.referencia) 
-                {
+            for (registro of productos) {
+                if (result == registro.referencia) {
+                    si_cumple(registro);
                     sw = 1;//lo encontro
-                    let mi_html = `
-                    <form action = "../form-result.php" target = "_blank">
-                        <p>
-                        Referencia:  <input type="text" name="nombrecompleto" value=" ${productos[0].referencia}" readonly><br>
-                        Descripción: <input type="text" name="nombrecompleto" value="${productos[0].descripcion}" readonly><br>
-                        Precio unid: <input type="text" name="nombrecompleto" value="${productos[0].precio_unitario}" readonly><br>
-                        Existencias: <input type="text" name="nombrecompleto" value="${productos[0].existencia}" readonly><br><br>
-                        <input type="submit" value="Enviar la información a la impresora">
-                        </p>
-                    </form>
-                    `
-                    document.getElementById('mensaje').innerHTML = mi_html;
                     break;//se sale apenas lo encontro para no gastar recursos
                 }
             }
-            if (sw == 0) 
-            {
-                document.getElementById('mensaje').innerHTML = "Producto no encontrado...";
+            if (sw == 0) {
+                no_cumple("Producto no encontrado");
             }
+        })
     }
-    
-    buscar();
-                                       
+
+    //respuesta de la promesa asincronica para buscar en el arreglo un objetos.
+
+    promesa(productos)
+        .then((datos_objeto) => {
+
+            let mi_html = `
+            <form action = "../form-result.php" target = "_blank">
+                <p>
+                Referencia:  <input type="text" name="nombrecompleto" value=" ${productos[0].referencia}" readonly><br>
+                Descripción: <input type="text" name="nombrecompleto" value="${productos[0].descripcion}" readonly><br>
+                Precio unid: <input type="text" name="nombrecompleto" value="${productos[0].precio_unitario}" readonly><br>
+                Existencias: <input type="text" name="nombrecompleto" value="${productos[0].existencia}" readonly><br><br>
+                <input type="submit" value="Enviar la información a la impresora">
+                </p>
+            </form>
+            `
+            document.getElementById('mensaje').innerHTML = mi_html;
+
+        })
+        .catch((error) => {
+            document.getElementById('mensaje').innerHTML = error;
+        })         
+                            
+                            
 </script>
 
 </html>
