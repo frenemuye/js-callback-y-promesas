@@ -78,11 +78,28 @@
         },
     ];
 
+    //en este ejercicio emulamos la respuesta de un servidor pasado 5 seg con un callback
+        function servidor() {
+            setTimeout(function () {
+                //simula una respuesta del servidor pasado dos segundos
+                //console.log("el servidor ha generado una respuesta...");
+                document.getElementById('prueba').innerHTML = "el servidor ha generado una respuesta...";
+            }, 3000)
+        }
+
+        function fn_callback(parametro) {
+                //console.log("Espere por favor ...");
+                document.getElementById('prueba').innerHTML = "Espere por favor...";
+                parametro();
+            }
+                    var result = prompt("Digita la referencia que buscas", "");
+
+        fn_callback(servidor);    
+
     //generación de la promesa asincronica para buscar en el arreglo un objetos.
     function promesa(ref_prod) {
         return new Promise((si_cumple, no_cumple) => {
             var sw = 0;
-            let result = prompt("Digita la referencia que buscas", "");
             for (registro of productos) {
                 if (result == registro.referencia) {
                     si_cumple(registro);
