@@ -87,7 +87,7 @@
                 if (result == registro.referencia) {
                     si_cumple(registro);
                     sw = 1;//lo encontro
-                    break;
+                    break;//se sale apenas lo encontro para no gastar recursos
                 }
             }
             if (sw == 0) {
@@ -100,33 +100,24 @@
 
     promesa(productos)
         .then((datos_objeto) => {
-            //console.log(productos)
-            //document.getElementById('prueba').innerHTML = productos;            
 
             let mi_html = `
-        <table border="1">
-            <tr>
-                <th>referencia </th>
-                <th>descripcion </th>
-                <th>precio_unitario </th>
-                <th>existencia </th>
-            </tr>    
-            <tr>
-                <td>${productos[0].referencia} </td>
-                <td>${productos[0].descripcion} </td>
-                <td>${productos[0].precio_unitario} </td>
-                <td>${productos[0].existencia} </td>
-            </tr>				
-        </table>
-        `
-            //console.log(mi_html)
+            <form action = "../form-result.php" target = "_blank">
+                <p>
+                Referencia:  <input type="text" name="nombrecompleto" value=" ${productos[0].referencia}" readonly><br>
+                Descripción: <input type="text" name="nombrecompleto" value="${productos[0].descripcion}" readonly><br>
+                Precio unid: <input type="text" name="nombrecompleto" value="${productos[0].precio_unitario}" readonly><br>
+                Existencias: <input type="text" name="nombrecompleto" value="${productos[0].existencia}" readonly><br><br>
+                <input type="submit" value="Enviar la información a la impresora">
+                </p>
+            </form>
+            `
             document.getElementById('mensaje').innerHTML = mi_html;
 
         })
         .catch((error) => {
             document.getElementById('mensaje').innerHTML = error;
-        })
-            
+        })         
                             
                             
 </script>
