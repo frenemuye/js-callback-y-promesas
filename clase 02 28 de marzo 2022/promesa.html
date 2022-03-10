@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        //las funciones callback son similares a las promesas
+        //en las promesas se dan 2 casos "yo prometi si usted cumple"
+        // o "yo prometi y usted no cumplio"
+
+        let promesa1= new Promise((si_cumple,si_no_cumple)=>{
+            let nota =5;
+            if (nota>=4) {
+                si_cumple("Tiene derecho al viaje a cartagena.")
+            }
+            else
+            {
+                si_no_cumple("No tiene derecho al viaje a Cartagena.");
+            }
+        
+        })
+
+        promesa1
+        .then((respuesta)=>{
+            console.log(respuesta)
+        })
+        .then(()=>{
+            console.log("con todos los tours pagos");
+        })
+        .then(()=>{
+            console.log("cuantos then quieras siempre se van por el si cumple la promesa")
+        })
+        .catch(function (error) {
+         //no es igual del todo al try catch
+         console.log(error)   
+        })
+    </script>
+</body>
+</html>

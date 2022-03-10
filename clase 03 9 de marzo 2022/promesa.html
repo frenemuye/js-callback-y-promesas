@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h1>Ejercicio de promesa:</h1>
+	<p>
+		creamos un objeto, luego una promesa función flecha, luego ejecutamos una promesa.
+		<br>
+		simulamos que extraimos unos datos y creamos un objeto de una base de datos
+	</p>
+<br>
+<br>
+<div id="mensaje">
+	
+</div>
+<br>
+<br>
+
+</body>
+
+<script >
+	let usuarios = [
+		{
+			user:"tgil",
+			nombre:"tulio gil",
+			email:"tgil@gmail.com",
+		},
+		{
+			user:"b",
+			nombre:"b gil",
+			email:"b@gmail.com",
+		},
+		{
+			user:"c",
+			nombre:"c gil",
+			email:"c@gmail.com",
+		},
+		{
+			user:"d",
+			nombre:"d gil",
+			email:"d@gmail.com",
+		},
+	];
+
+//generación de la promesa asincronica para listar el arreglo de objetos.
+
+function fpusuarios(cualquier_objeto)
+{
+	return new Promise((si,no)=>
+	{
+		document.getElementById('mensaje').innerHTML="Recuperando usuarios...";
+		setTimeout(()=>
+		{
+			let sw=true;
+			if (sw) 
+			{
+				si(cualquier_objeto);
+				//este termina en variable data
+			}
+			else
+			{
+				no("No hay usuarios para mostrar...");
+				//este termina en la variable error
+			}
+		},2000)
+	})
+} 
+
+fpusuarios(usuarios)
+	.then((data)=>
+	{
+		let mi_html=`<table border='1'>
+						<th>usuario</th>
+						<th>nombre</th>
+						<th>Email</th>		
+					`					
+		// for (let i = 0; i <data.length; i++) 
+		// {		
+		// 	mi_html+=`<tr>
+		// 				<td>${data[i].user} </td>
+		// 				<td>${data[i].nombre} </td>
+		// 				<td>${data[i].email} </td>
+		// 			  </tr>
+		// 			`
+		// }
+		// mi_html+=`</table>`
+
+		for(registro of data)
+		{
+		mi_html+=`<tr>
+						<td>${registro.user} </td>
+						<td>${registro.nombre} </td>
+						<td>${registro.email} </td>
+					  </tr>
+					`
+		}
+		mi_html+=`</table>`
+
+		document.getElementById('mensaje').innerHTML=mi_html;
+	})
+	.catch((error)=>
+	{
+		document.getElementById('mensaje').innerHTML=error;
+	})	
+
+
+</script>
+</html>

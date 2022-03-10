@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+<script type="text/javascript">
+//en este ejercicio emulamos la respuesta de un servidor pasado 5 seg con un callback
+	function servidor() 
+	{
+		setTimeout(function()
+		{
+			//console.log("el servidor ha generado una respuesta...");
+			let objeto_persona={id:"123",nombre:"freddy",apellido:"goez"}
+			console.log(objeto_persona.nombre);
+		},5000)
+	}
+
+	function fncb(fnc) {
+		fnc()
+		console.log("Espere por favor ...");
+	}
+   
+    fncb(servidor);
+</script>
+</body>
+</html>

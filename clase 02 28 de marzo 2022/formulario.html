@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="">
+        <h1><p id="mensaje">Formulario</p></h1>
+        <img id="img_cargando" src="img/cargando.gif"><br><br>
+        <label for="">id</label><br>
+        <input type="text" name="id" id="id"><br>
+        <label for="">nombre</label><br>
+        <input type="text" name="nombre" id="nombre"><br>
+        <label for="">salario</label><br>
+        <input type="text" name="salario" id="salario"><br>
+        
+    </form>
+    <script>
+        let mi_imagen=document.getElementById("img_cargando");
+        mi_imagen.style.visibility="hidden";
+        function servidor() 
+        {
+            setTimeout(function()
+            {
+                //console.log("el servidor ha generado una respuesta...");
+                let objeto_persona={id:"123",nombre:"freddy",salario:1000000}
+                document.getElementById("id").value=objeto_persona.id;
+                document.getElementById("nombre").value=objeto_persona.nombre;
+                document.getElementById("salario").value=objeto_persona.salario;
+                document.getElementById("mensaje").style.color="green";
+                document.getElementById("mensaje").innerHTML="Información actualizada";
+                mi_imagen.style.visibility="hidden"
+            },4000)
+        }
+
+        function fncb(fnc) {
+            fnc()
+            document.getElementById("mensaje").innerHTML="Espere por favor ...";
+            mi_imagen.style.visibility="visible";
+            }
+    
+        fncb(servidor);
+    </script>
+</body>
+</html>

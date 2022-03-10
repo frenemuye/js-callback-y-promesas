@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+<script>
+	function calcular(a,b,o) 
+	{
+		switch (o)
+		{
+			case "+": 
+						resp=parseFloat(a) + parseFloat(b);
+						break;
+			case "-": 
+						resp=parseFloat(a) - parseFloat(b);
+						break;
+			case "/": 
+						resp=parseFloat(a) / parseFloat(b);
+						break;
+			case "x": 
+						resp=parseFloat(a) * parseFloat(b);
+						break;
+		}
+		return resp;
+
+	}
+	//funcion para llamar cualquier a cualquier funcion se llama con un callback
+	function llamar_funcion(cualquier_nombre) {
+		let valor1 = prompt("ingresa un numero 1");
+		let valor2 = prompt("ingresa un numero 2");
+		let operador = prompt("+ - x /");
+		return cualquier_nombre(valor1,valor2,operador);
+	}
+	console.log(llamar_funcion(calcular));
+
+</script>
+
+</body>
+</html>

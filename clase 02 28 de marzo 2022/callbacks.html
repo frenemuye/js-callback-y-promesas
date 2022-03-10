@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    //esto hace que despues de hacer la peticion al servidodr lo demas siga ejecutando aun necesitando informacion del servidor para continuar.
+    function mensaje() {
+        console.log(`Hola desde una funcion invocada por otra`);
+
+    }
+
+    function callbacks(p) {
+        return p;
+    }
+
+    callbacks(mensaje());
+
+    //esto es igual a lo anterior
+    function mensaje1() {
+        console.log(`Hola desde una funcion invocada por otra`);
+
+    }
+
+    function callbacks_1(p) {
+        p();
+    }
+
+    callbacks_1(mensaje1);
+    //--------------
+    //--------------
+    //--------------
+    //-------------- ejercicio de llamar una funcion pidiendo un nombre
+
+    function imprimir(nombre){
+        alert(`Hola, ${nombre}`)
+    }
+
+    function leer(llamar){
+        let name = prompt("Ingrese el nombre: ");
+        llamar(name);
+    }
+
+    leer(imprimir);
+
+    //-------------- fin ejercicio de llamar una funcion pidiendo un nombre
+
+</script>

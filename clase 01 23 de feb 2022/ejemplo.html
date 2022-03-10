@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<h1>Js avanzado</h1>
+
+
+
+</body>
+</html>
+<script>
+
+	//jscript avanzado formato de json
+	let datos_alum = {"cedula":"71334778","nombre":"freddy", "salario":2100000,"estado":true};
+	console.log(datos_alum);
+
+	console.log(`cedula : ${datos_alum["cedula"]}`);
+	console.log(`nombre : ${datos_alum["nombre"]}`);
+	console.log(`salario : ${datos_alum["salario"]}`);
+	console.log(`estado : ${datos_alum["estado"]}`);
+	console.log(` `);
+	console.log(` `);
+	console.log(datos_alum.estado);
+	if (datos_alum.estado) {
+		console.log("estado activo");
+	}
+	else
+	{
+		console.log("estado no activo");	
+	}
+	console.log(` `);
+	console.log(` `);
+	for (const key in datos_alum) {
+	console.log(`la posición key tiene: ${key} ==> ${datos_alum[key]}`);
+}
+let m=4;
+
+function mensaje()
+{ 
+	let m=6;
+	console.log("mensaje de la función: " + m);
+}
+console.log(`mensaje de la función:  ${m}`);
+mensaje();
+console.log(`mensaje de la función:  ${m}`);
+
+function suma(a=1,b=2){
+	console.log(`a+b da ${a+b}`);
+}
+suma();
+
+function suma_r(a,b){
+	return a+b;
+}
+console.log(suma_r(2,2));
+
+console.log(` `);
+console.log(` `);
+function operaciones(a,b,operador){
+	let res=0;
+	switch(operador){
+		case "+": 	res=a+b;
+					break;
+		case "-": 	res=a-b;
+					break;
+		case "*": 	res=a*b;
+					break;
+		case "/": 	res=a/b;
+					break;
+	}
+	return res;
+}
+
+console.log(operaciones(3,3,"/"));
+
+	function elevar(n,x){
+		return Math.pow(n,x);
+		
+	}
+
+console.log(`n a la x da : ${ elevar(1,1)}` );
+
+function raiz(n,x){
+		return Math.sqrt(n);
+		
+	}
+
+console.log(`n a la raiz 2 da : ${ raiz(1)}` );
+
+</script>

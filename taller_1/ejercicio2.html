@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+<div id="mensaje">
+
+</div>
+</body>
+<script>
+
+    let productos = [
+        {
+            referencia: "ref1",
+            descripcion: "rebook",
+            precio_unitario: "200000",
+            existencia: "10",
+        },
+        {
+            referencia: "ref2",
+            descripcion: "fila",
+            precio_unitario: "200000",
+            existencia: "10",
+        },
+        {
+            referencia: "ref3",
+            descripcion: "nike",
+            precio_unitario: "200000",
+            existencia: "10",
+        },
+        {
+            referencia: "ref4",
+            descripcion: "lacost",
+            precio_unitario: "200000",
+            existencia: "10",
+        },
+        {
+            referencia: "ref5",
+            descripcion: "puma",
+            precio_unitario: "200000",
+            existencia: "10",
+        },
+        {
+            referencia: "ref6",
+            descripcion: "new balance",
+            precio_unitario: "200000",
+            existencia: "10",
+        },
+        {
+            referencia: "ref7",
+            descripcion: "caterpila",
+            precio_unitario: "200000",
+            existencia: "10",
+        },
+        {
+            referencia: "ref8",
+            descripcion: "china",
+            precio_unitario: "200000",
+            existencia: "10",
+        },
+        {
+            referencia: "ref9",
+            descripcion: "nacional",
+            precio_unitario: "200000",
+            existencia: "10",
+        },
+        {
+            referencia: "ref10",
+            descripcion: "totto",
+            precio_unitario: "200000",
+            existencia: "10",
+        },
+    ];   
+//generación de la promesa asincronica para buscar en el arreglo un objetos.
+    function promesa(ref_prod) {
+        return new Promise((si_esta, no_esta) => 
+        {
+            
+            let sw=0;
+            result = prompt("Digita la referencia que buscas", "");
+            for (registro of productos) 
+            {
+                if (result == registro.referencia) 
+                {
+                    si_esta(registro);                               
+                    sw=1;
+                    break;
+                }                
+            }
+            if (sw==0) 
+            {
+                no_esta("Producto no encontrado");
+            }
+                
+        })
+    }
+    promesa(productos)
+        .then((datos_objeto) => 
+        {
+            console.log(productos)
+            
+            let mi_html = `
+                    <table border="1">
+                        <tr>
+                            <th>referencia </th>
+                            <th>descripcion </th>
+                            <th>precio_unitario </th>
+                            <th>existencia </th>
+                        </tr>    
+                        <tr>
+                            <td>${productos[0].referencia} </td>
+                            <td>${productos[0].descripcion} </td>
+                            <td>${productos[0].precio_unitario} </td>
+                            <td>${productos[0].existencia} </td>
+                        </tr>				
+                    </table>
+                    `
+                    console.log(mi_html)
+                document.getElementById('mensaje').innerHTML = mi_html;                     
+                       
+        })
+        .catch((error) => 
+        {
+            document.getElementById('mensaje').innerHTML = error;        
+        }) 
+</script>
+
+</html>

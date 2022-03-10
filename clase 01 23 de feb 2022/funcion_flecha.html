@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<h1>Js avanzado</h1>
+
+
+
+</body>
+</html>
+<script>
+
+// funciones flecha o funciones anónimas
+	function mi_suma(a,b)
+	{
+		return a + b;
+	}
+
+	let misuma = function(a, b) //funcion anonima
+	{
+		return a + b;
+	}
+
+	let misuma1 = (a,b) => a+b; //funcion flecha este le pone automaticamente funlas {} y el return
+
+	let misuma2 = (a,b) => //funcion flecha este es un mal uso
+	{
+		return a + b;
+	}
+
+	console.log(mi_suma(1,1));
+	console.log(misuma(1,1));
+	console.log(misuma1(1,1));
+	console.log(misuma2(1,1));
+
+	var respuesta= (misuma1)=> misuma1 > "2" ? "Mayor":"Menor";
+	console.log(respuesta);
+
+</script>

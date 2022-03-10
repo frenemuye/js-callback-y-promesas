@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        //las funciones callback son similares a las promesas
+        //en las promesas se dan 2 casos "yo prometi si usted cumple"
+        // o "yo prometi y usted no cumplio"
+
+        function promesa2 (usuario)
+        {
+            return new Promise((si_esta,no_esta)=>{
+                if (usuario=="activo") {
+                    let datos_personales={nombre:"lina",email:"l@a.com"}
+                    si_esta(datos_personales)
+                }
+                else{
+                    no_esta("usuario no encontrado")
+                }
+            })
+        }
+        promesa2("activo")
+            .then((datos_objeto)=>{
+                console.log(`Nombre: ${datos_objeto.nombre}, Email: ${datos_objeto.email} `)
+            }) 
+            .catch((error)=>{
+                console.log(`Usuario no hallado `)
+            }) 
+            
+    </script>
+</body>
+</html>
